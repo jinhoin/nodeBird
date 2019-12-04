@@ -2,7 +2,9 @@
   <v-container>
     <v-card>
       <v-form>
-        <v-container><v-text-field label="이메일" v-model="email" : type="email" required /></v-container>
+        <v-container>
+          <v-text-field label="이메일" v-model="email" :type="email" required />
+        </v-container>
 
         <v-container>
           <v-text-field label="비밀번호" type="password" required />
