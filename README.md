@@ -1,1 +1,3 @@
 # nodeBird
+ npm install
+ 
