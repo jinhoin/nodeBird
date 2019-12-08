@@ -5,25 +5,34 @@ export const state = () => ({
 
 // commit 으로 명령을 실행 / 단순한 동기적
 export const mutations = {
-    setMe(state, playload) {
-        console.log('setME init', playload)
-        state.me = playload;
+    setMe(state, payLoad) {
+        state.me = payLoad;
+    },
+    changeNickName(state, payLoad) {
+        debugger
+        console.log(['payLoad', payLoad]);
+        console.log(['state', state]);
+        // state.me.nickName = payLoad.nickName;
     }
 }
 
 // dispath 를 주로사용 비동기시 사용
 export const actions = {
-    signUp(context, playload) {
-        console.log(context);
+    signUp(context, payLoad) {
         // 명령을통해서 mutations 를 활용해 값을 수정해준다 
-        context.commit('setMe', playload);
+        context.commit('setMe', payLoad);
     },
-    logIn({ commit, state }, playload) {
-        commit('setMe', playload);
+    logIn({ commit, state }, payLoad) {
+        commit('setMe', payLoad);
 
     },
-    logOut({ commit, state }, playload) {
+    logOut({ commit, state }, payLoad) {
         commit('setMe', null);
 
+    },
+    changeNickName({ commit }, payLoad) {
+        console.log(commit, payLoad);
+
+        // context.commit('changeNickName', payLoad);
     }
 };

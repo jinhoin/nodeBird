@@ -16,8 +16,10 @@
   </v-container>
   <v-container v-else>
     <v-card>
-      {{ me.nickName}}님이 로그인되었습니다
-      <v-btn @click="logOut">로그아웃</v-btn>
+      <v-container>
+        {{ me.nickName}}님이 로그인되었습니다
+        <v-btn @click="logOut">로그아웃</v-btn>
+      </v-container>
     </v-card>
   </v-container>
 </template>
@@ -45,7 +47,6 @@ export default {
   },
   methods: {
     onSubmitForm() {
-      console.log(this.$refs.form.validate());
       if (!this.$refs.form.validate()) {
         alert("값을 완벽히 입력하세요");
         return false;
@@ -56,10 +57,9 @@ export default {
           email: this.email,
           nickName: "hoja"
         })
-        .then(function() {
-          this.$router.push("/proFile");
-        })
-        .catch(function() {
+        .then(() => {})
+        .catch(function(err) {
+          alert(err);
           alert("로그인에 실패했습니다");
         });
     },

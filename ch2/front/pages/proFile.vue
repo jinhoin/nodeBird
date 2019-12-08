@@ -5,8 +5,8 @@
         <v-subheader>내 프로필</v-subheader>
       </v-container>
     </v-card>
-    <v-form>
-      <v-text-field label="닉네임" required></v-text-field>
+    <v-form @submit="onSubmitForm" v-model="valid">
+      <v-text-field label="닉네임" required v-model="nickName" :rules="nickNameRules"></v-text-field>
       <v-btn color="blue" type="submit">수정</v-btn>
     </v-form>
     <v-card style="margin-bottom: 20px">
@@ -30,8 +30,35 @@ export default {
     FollowList
   },
   data() {
-    return {};
-  }
+    return {
+      valid: false,
+      nickName: "",
+      nickNameRules: [v => !!v || "닉네임입력값은 필수잆니다."]
+    };
+  },
+  methods: {
+    onSubmitForm() {
+      console.log({
+        nickName: this.nickName
+      });
+      if (this.nickName.length) {
+        this.valid = true;
+
+        this.$store
+          .dispatch("users/changeNickName", {
+            nickName: this.nickName
+          })
+          .then(() => {})
+          .catch(error => {
+            alert(error);
+          });
+      } else {
+        alert("닉네임값을 입력하세요");
+        return false;
+      }
+    }
+  },
+  mounted() {}
 };
 </script>
 <style>

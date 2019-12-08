@@ -25,8 +25,6 @@
     </nav>
     <v-row>
       <v-col cols="12" md="4">
-        <div>{{name}}</div>
-        <v-btn @click="incrementsPost">바꾸기</v-btn>
         <login-form></login-form>
       </v-col>
       <v-col cols="12" md="8">
@@ -45,16 +43,7 @@ export default {
   data() {
     return {};
   },
-  computed: {
-    name() {
-      return this.$store.state.posts.name;
-    }
-  },
-  methods: {
-    incrementsPost() {
-      this.$store.commit("posts/BYE");
-    }
-  }
+  computed: {}
 };
 </script>
 <style>

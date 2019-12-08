@@ -1,0 +1,48 @@
+[33mcommit bf7d17f8fa3a8d78f460f981569863b058d33e27[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Jin ho in <in362@naver.com>
+Date:   Sun Dec 8 22:34:21 2019 +0900
+
+    ch2 더미 데이터 입력 및 수정 끝 | 닉네임수정시 버그
+
+[33mcommit 3b4a9346ad8f0a53076eee30768de55f908f6efc[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Jin ho in <in362@naver.com>
+Date:   Thu Dec 5 00:05:42 2019 +0900
+
+    미변경 사항 추가 변경
+
+[33mcommit 14b956f96fdac4f5779b700fdebc80ab04e6fe47[m
+Author: Jin ho in <in362@naver.com>
+Date:   Thu Dec 5 00:05:04 2019 +0900
+
+    ch2 init|vuex mutations, actions training
+
+[33mcommit c253439c768da182ae49b66ee58525e133aa00a8[m
+Merge: bb17e55 806bef7
+Author: Jin ho in <in362@naver.com>
+Date:   Wed Dec 4 00:12:01 2019 +0900
+
+    프로젝트 충돌해결
+
+[33mcommit bb17e55e9c6b715e074b53f9cc14aa9f681b75ef[m
+Author: Jin ho in <in362@naver.com>
+Date:   Wed Dec 4 00:08:08 2019 +0900
+
+    추가
+
+[33mcommit e14d250f175162e088bf1e828f32b3edd994316d[m
+Author: Jin ho in <in362@naver.com>
+Date:   Wed Dec 4 00:05:47 2019 +0900
+
+    프로젝트 새로 시작| 마크업 기본 완료
+
+[33mcommit 806bef7aec1890f9276d2b1a9a21ca828fe60174[m
+Author: Jin ho in <in362@naver.com>
+Date:   Fri Nov 29 22:42:08 2019 +0900
+
+    vuetify 설치가안됨
+
+[33mcommit a37e4639ff938bd2f77b1b2d4ad439bb5b2d1b47[m
+Author: goodman <41941147+jinhoin@users.noreply.github.com>
+Date:   Fri Nov 29 20:33:32 2019 +0900
+
+    Initial commit

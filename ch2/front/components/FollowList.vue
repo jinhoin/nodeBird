@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile>
+  <v-list>
     <ul>
       <li>
         <span>제로초</span>
@@ -14,7 +14,7 @@
         <v-icon>mdi-minus-circle-outline</v-icon>
       </li>
     </ul>
-  </v-list-tile>
+  </v-list>
 </template>
 <script>
 export default {};
