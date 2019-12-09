@@ -51,10 +51,22 @@ export default {
       termsRule: [v => !!v || "약관에 동의해야합니다"]
     };
   },
+  watch: {
+    me(newValue, oldValue) {
+      console.log(oldValue);
+
+      if (oldValue) {
+        this.$router.push({ path: "/" });
+      }
+    }
+  },
+  computed: {
+    me() {
+      return this.$store.state.users.me;
+    }
+  },
   methods: {
     onSubmitForm() {
-      console.log(this.valid);
-      console.log(this.$refs.form.validate());
       if (this.$refs.form.validate()) {
         // 객체로 값전송
         this.$store.dispatch("users/signUp", {
@@ -70,7 +82,8 @@ export default {
     return {
       title: "회원가입"
     };
-  }
+  },
+  middleware: "anonymous"
 };
 </script>
 <style>

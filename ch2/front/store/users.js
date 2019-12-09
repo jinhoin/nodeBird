@@ -1,6 +1,12 @@
 // state 는 함수다
 export const state = () => ({
     me: null,
+    followerList: [
+        { id: 1, nickName: "제로초" }, { id: 2, nickName: "캐롤" }, { id: 3, nickName: "호인" }
+    ],
+    followingList: [
+        { id: 1, nickName: "제로초" }, { id: 2, nickName: "캐롤" }, { id: 3, nickName: "호인" }
+    ]
 });
 
 // commit 으로 명령을 실행 / 단순한 동기적
@@ -9,10 +15,18 @@ export const mutations = {
         state.me = payLoad;
     },
     changeNickName(state, payLoad) {
-        debugger
-        console.log(['payLoad', payLoad]);
-        console.log(['state', state]);
-        // state.me.nickName = payLoad.nickName;
+        state.me.nickName = payLoad.nickName;
+    },
+    removeFollowing(state, payLoad) {
+        const index = state.followingList.findIndex(v => v.id === payLoad.id);
+        console.log(index, payLoad.id);
+        state.followingList.splice(index, 1);
+    },
+    removeFollower(state, payLoad) {
+        const index = state.followerList.findIndex(v => v.id === payLoad.id);
+        console.log(index, payLoad.id);
+        state.followerList.splice(index, 1);
+
     }
 }
 
@@ -30,9 +44,12 @@ export const actions = {
         commit('setMe', null);
 
     },
-    changeNickName({ commit }, payLoad) {
-        console.log(commit, payLoad);
+    changeNickName(context, payLoad) {
+        context.commit('changeNickName', payLoad);
+    }, removeFollowing(context, payLoad) {
+        context.commit('removeFollowing', payLoad);
 
-        // context.commit('changeNickName', payLoad);
+    }, removeFollower(context, payLoad) {
+        context.commit('removeFollowing', payLoad);
     }
-};
+}

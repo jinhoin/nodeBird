@@ -1,23 +1,25 @@
 <template>
   <v-list>
     <ul>
-      <li>
-        <span>제로초</span>
-        <v-icon>mdi-minus-circle-outline</v-icon>
-      </li>
-      <li>
-        <span>진호인</span>
-        <v-icon>mdi-minus-circle-outline</v-icon>
-      </li>
-      <li>
-        <span>히어로</span>
-        <v-icon>mdi-minus-circle-outline</v-icon>
+      <li v-for="f in follow" :key="f.id">
+        <span>{{f.nickName }}</span>
+        <v-icon @click="remove(f.id)">mdi-minus-circle-outline</v-icon>
       </li>
     </ul>
   </v-list>
 </template>
 <script>
-export default {};
+export default {
+  props: {
+    follow: {
+      type: Array,
+      required: true
+    },
+    remove: {
+      type: Function
+    }
+  }
+};
 </script>
 <style>
 </style>

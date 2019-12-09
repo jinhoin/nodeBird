@@ -16,7 +16,6 @@ export default {
     PostForm
   },
   data() {
-    console.log("me", this.me);
     return {};
   },
   computed: {
