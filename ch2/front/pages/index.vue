@@ -24,9 +24,39 @@ export default {
     },
     mainPosts() {
       return this.$store.state.posts.mainPosts;
+    },
+    hasMorePost() {
+      return this.$store.state.posts.hasMorePost;
     }
   },
-  methods: {}
+  // component 마운트 전 vuexStore 비동기로 데이터를 넣을때
+  fetch({ store }) {
+    store.dispatch("posts/loadPosts");
+  },
+  methods: {
+    onScroll() {
+      if (
+        // 사용자 경험을 좋게하기 위해 300
+        window.scrollY + document.documentElement.clientHeight >
+        document.documentElement.scrollHeight - 300
+      ) {
+        if (this.hasMorePost) {
+          this.$store.dispatch("posts/loadPosts");
+        }
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+  head() {
+    return {
+      title: "NodeBird"
+    };
+  }
 };
 </script>
 <style>

@@ -4,8 +4,8 @@
       <v-img />
       <v-card-text>
         <div>
-          <h3>{{ post.users.nickName }}</h3>
-          <nuxt-link :to="'/post/'+post.id">{{ post.id }}</nuxt-link>
+          <h3>{{ post.User.nickName }}</h3>
+          <nuxt-link :to="'/post/'+post.id">{{ post.content }}</nuxt-link>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -37,9 +37,9 @@
       <v-list>
         <v-list-item v-for="comment in post.Comments" :key="comment.id">
           <v-list-item-avatar color="teal">
-            <span>{{ comment.users.nickName[0]}}</span>
+            <span>{{ comment.Users.nickName[0]}}</span>
           </v-list-item-avatar>
-          <v-list-item-title>{{ comment.users.nickName }}</v-list-item-title>
+          <v-list-item-title>{{ comment.Users.nickName }}</v-list-item-title>
           <v-list-sub-title>{{ comment.content }}</v-list-sub-title>
         </v-list-item>
       </v-list>

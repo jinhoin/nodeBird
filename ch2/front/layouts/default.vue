@@ -14,10 +14,10 @@
             hide-details
             style="{ display:'flex'; alignItems:'flex-end' }"
           />
-          <v-btn text nuxt to="/proFile">
+          <v-btn text nuxt to="/proFile" v-if="me">
             <div>프로필</div>
           </v-btn>
-          <v-btn text nuxt to="/signUp">
+          <v-btn text nuxt to="/signUp" v-else>
             <div>회원가입</div>
           </v-btn>
         </v-toolbar-items>
@@ -43,7 +43,11 @@ export default {
   data() {
     return {};
   },
-  computed: {}
+  computed: {
+    me() {
+      return this.$store.state.users.me;
+    }
+  }
 };
 </script>
 <style>
