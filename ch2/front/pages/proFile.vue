@@ -12,13 +12,15 @@
     <v-card style="margin-bottom: 20px">
       <v-container>
         <v-subheader>팔로잉</v-subheader>
-        <follow-list :follow="followerList" :remove="removeFollower" />
+        <follow-list :users="followerList" :remove="removeFollower" />
+        <v-btn v-if="hasMoreFollower" @click="loadFollowers" dark color="blue">더 보기</v-btn>
       </v-container>
     </v-card>
     <v-card style="margin-bottom: 20px">
       <v-container>
         <v-subheader>팔로워</v-subheader>
-        <follow-list :follow="followingList" :remove="removeFollowing" />
+        <follow-list :users="followingList" :remove="removeFollowing" />
+        <v-btn v-if="hasMoreFollowing" @click="loadFollowings" dark color="blue">더 보기</v-btn>
       </v-container>
     </v-card>
   </v-container>
@@ -30,11 +32,18 @@ export default {
     FollowList
   },
   computed: {
+    // mapStae
     followerList() {
       return this.$store.state.users.followerList;
     },
     followingList() {
       return this.$store.state.users.followingList;
+    },
+    hasMoreFollowing() {
+      return this.$store.state.users.hasMoreFollowing;
+    },
+    hasMoreFollower() {
+      return this.$store.state.users.hasMoreFollower;
     }
   },
   data() {
@@ -43,6 +52,10 @@ export default {
       nickName: "",
       nickNameRules: [v => !!v || "닉네임입력값은 필수잆니다."]
     };
+  },
+  fetch({ store }) {
+    store.dispatch("users/loadFollowers");
+    store.dispatch("users/loadFollowings");
   },
   methods: {
     onSubmitForm() {
@@ -76,6 +89,12 @@ export default {
           alert("삭제에 성공했습니다");
         })
         .catch(error => alert(erro));
+    },
+    loadFollowers() {
+      this.$store.dispatch("users/loadFollowers");
+    },
+    loadFollowings() {
+      this.$store.dispatch("users/loadFollowings");
     }
   },
   head() {

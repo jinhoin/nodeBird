@@ -13,7 +13,7 @@ export default {
   computed: {
     post() {
       return this.$store.state.posts.mainPosts.find(
-        v => v.id === parseInt(this.$router.params.id, 10)
+        v => v.id === parseInt(this.$route.params.id, 10)
       );
     }
   }
