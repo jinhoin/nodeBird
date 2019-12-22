@@ -1,9 +1,10 @@
 // 함수를 모듈로
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define('User', {
+    const User = sequelize.define('users', {
         email: {
             type: DataTypes.STRING(20),
-            allowNull: false
+            allowNull: false,
+            unique: true,
         },
         nickName: {
             type: DataTypes.STRING(15),
@@ -17,8 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         charset: 'utf8',
         collate: 'utf8_general_ci' //한글
     });
-    User.associate = (db) => {
-
-    };
+    User.associate = (db) => {};
     return User;
 }

@@ -57,10 +57,10 @@ export const mutations = {
 export const actions = {
     signUp(context, payLoad) {
         // 명령을통해서 mutations 를 활용해 값을 수정해준다 
-        this.$axios.post('/users', {
-            emaail: payLoad.email,
+        this.$axios.post('http://localhost:3085/user', {
+            email: payLoad.email,
             nickName: payLoad.nickName,
-            password: payLoad.password,
+            passWord: payLoad.passWord,
         });
         context.commit('setMe', payLoad);
     },

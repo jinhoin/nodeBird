@@ -70,7 +70,7 @@ export default {
         this.$store.dispatch("users/signUp", {
           nickName: this.nickName,
           email: this.email,
-          password: this.password
+          passWord: this.passWord
         });
       } else {
         alert("값을 완벽히 입력하세요");
