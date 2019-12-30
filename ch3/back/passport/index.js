@@ -13,7 +13,6 @@ module.exports = () => {
 			const user = await  db.User.find({where: {id}}); // 캐싱 처리해준다
 			return done(null, user); //req,user, req.isAuthenticated() === true, 로 만들어준다
 		}catch (err) {
-			console.log('deserializeUser =>'+ err);
 			return done(err);
 		}
 	});

@@ -87,7 +87,7 @@ export const actions = {
         debugger
         this.$axios.post('http://localhost:3085/user/logout', {}, {withCredentials: true})
         .then((res)=>{
-            console.log(res);
+            console.log(n);
             commit('setMe', null);
         })
         .catch((err)=>{alert(err);})

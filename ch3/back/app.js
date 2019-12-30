@@ -6,12 +6,14 @@ const cookie = require('cookie-parser');
 const passport = require('passport');
 const morgan = require('morgan');
 const passPortConfig = require('./passport');
-const usersRouter = require('./routes/user');
+const userRouter = require('./routes/user');
+const postRouter = require('./routes/Post');
+
 const app = express();
 
 // 기존데이터 날라가니 조심해야됨
-// db.sequelize.sync({force: true});
-db.sequelize.sync();
+db.sequelize.sync({force: true});
+// db.sequelize.sync();
 passPortConfig();
 
 app.use(morgan('dev'));
@@ -31,9 +33,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     secret: 'cookieSecret',
-    cookie: {
-
-    }
+    cookie: {}
 }));
 
 // middleware 처리
@@ -46,7 +46,8 @@ app.get('/', function (req, res, next) {
     res.status(200).send('안녕 시퀄라이즈')
 });
 
-app.use('/user', usersRouter);
+app.use('/user', userRouter);
+app.use('/post', postRouter);
 
 app.post('/post', (req,res) => {
     if (!req.isAuthenticated()){
