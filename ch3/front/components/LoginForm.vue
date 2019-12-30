@@ -7,7 +7,7 @@
         </v-container>
 
         <v-container>
-          <v-text-field label="비밀번호" type="password" required />
+          <v-text-field label="비밀번호" type="password" v-model="passWord" required />
         </v-container>
         <v-btn color="green" typ="submit" @click="onSubmitForm">로그인</v-btn>
         <v-btn nuxt to="/signUp">회원가입</v-btn>
@@ -51,13 +51,15 @@ export default {
         alert("값을 완벽히 입력하세요");
         return false;
       }
-
       this.$store
         .dispatch("users/logIn", {
           email: this.email,
-          nickName: "hoja"
+          nickName: "hoja",
+          passWord: this.passWord
         })
-        .then(() => {})
+        .then((res) => {
+          console.log(res);
+        })
         .catch(function(err) {
           alert(err);
           alert("로그인에 실패했습니다");

@@ -61,17 +61,38 @@ export const actions = {
             email: payLoad.email,
             nickName: payLoad.nickName,
             passWord: payLoad.passWord,
+        }).then((res) => {
+           console.log(res);
+           context.commit('setMe', payLoad);
+        }).catch((err) => {
+
         });
-        context.commit('setMe', payLoad);
     },
     logIn({ commit, state }, payLoad) {
-        commit('setMe', payLoad);
+        this.$axios.post('http://localhost:3085/user/login', {
+           email:payLoad.email,
+           passWord: payLoad.passWord,
+        }, {
+            // cookie 가 서로 저장된다 cors
+            withCredentials: true
+        }).then((data) =>{
+            console.log(data);
+           commit('setMe', payLoad);
+        }).catch((err) => {
+            alert(err);
+        });
 
     },
     logOut({ commit, state }, payLoad) {
-        commit('setMe', null);
-
+        debugger
+        this.$axios.post('http://localhost:3085/user/logout', {}, {withCredentials: true})
+        .then((res)=>{
+            console.log(res);
+            commit('setMe', null);
+        })
+        .catch((err)=>{alert(err);})
     },
+
     changeNickName(context, payLoad) {
         context.commit('changeNickName', payLoad);
     },
