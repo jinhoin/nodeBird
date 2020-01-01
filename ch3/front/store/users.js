@@ -76,8 +76,7 @@ export const actions = {
             // cookie 가 서로 저장된다 cors
             withCredentials: true
         }).then((data) =>{
-            console.log(data);
-           commit('setMe', payLoad);
+            commit('setMe', payLoad);
         }).catch((err) => {
             alert(err);
         });
@@ -87,8 +86,7 @@ export const actions = {
         debugger
         this.$axios.post('http://localhost:3085/user/logout', {}, {withCredentials: true})
         .then((res)=>{
-            console.log(n);
-            commit('setMe', null);
+          commit('setMe', null);
         })
         .catch((err)=>{alert(err);})
     },

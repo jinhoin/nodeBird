@@ -12,8 +12,8 @@ const postRouter = require('./routes/Post');
 const app = express();
 
 // 기존데이터 날라가니 조심해야됨
-db.sequelize.sync({force: true});
-// db.sequelize.sync();
+// db.sequelize.sync({force: true});
+db.sequelize.sync();
 passPortConfig();
 
 app.use(morgan('dev'));
@@ -22,6 +22,8 @@ app.use(cors({
     // 서로간 쿠키 공유
     credentials: true,
 }));
+
+app.use('/', express.static('uploads'));
 // 미들웨어 req 명령어를 미들웨어로처리
 app.use(express.json());
 // form data 를 req.body에 넣어주는거

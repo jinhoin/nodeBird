@@ -10,7 +10,7 @@ module.exports = () => {
 	// 로그인 후 모든 요청 사용자 정보를 복구한다
 	passPort.deserializeUser(async (id, done)=>{
 		try {
-			const user = await  db.User.find({where: {id}}); // 캐싱 처리해준다
+			const user = await  db.User.findOne({where: {id}}); // 캐싱 처리해준다
 			return done(null, user); //req,user, req.isAuthenticated() === true, 로 만들어준다
 		}catch (err) {
 			return done(err);

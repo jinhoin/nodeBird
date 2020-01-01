@@ -8,7 +8,15 @@ const db = require('../models');
 router.post('/', async (req, res, next) => {
 	try {
 		const hash = await bCrypt.hash(req.body.passWord, 12);
-		const confirmUser = await db.User.findOne({where : { email:req.email }});
+
+		console.log(
+			{
+				'users':db.User
+			}
+		);
+		const confirmUser = await db.User.findOne(
+			{where:{ email:req.body.email}}
+			);
 		// if (confirmUser) throw '이미 있는 이메일입니다';
 		if (confirmUser){
 			// 클라이언트 잘못된 요청
@@ -51,11 +59,17 @@ router.post('/login', async (req, res, next) => {
 });
 
 router.post('/logout', function (req,res) {
+
+	console.log({
+		req: req
+	});
 	if (req.isAuthenticated()){
 		console.log({'req': req});
 		req.logout();
 		req.session.destroy(); // 세션 없애기 이부분은 선택사항
 		return res.status(200).send('로그아웃 되었습니다');
+	}else{
+		debugger
 	}
 });
 

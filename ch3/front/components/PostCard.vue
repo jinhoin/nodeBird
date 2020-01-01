@@ -9,7 +9,7 @@
       </v-card-title>
       <v-card-text>
         <div>
-          <nuxt-link :to="'/post/'+post.id">{{ post.content }}</nuxt-link>
+          <nuxt-link :to="'/post/'+post.id">{{ post.contents }}</nuxt-link>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -69,9 +69,7 @@ export default {
   },
   methods: {
     onRemovePost() {
-      this.$store.dispatch("posts/remove", {
-        id: this.post.id
-      });
+      this.$store.dispatch("posts/remove", {id: this.post.id});
     }
   }
 };

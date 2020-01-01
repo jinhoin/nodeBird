@@ -1,6 +1,7 @@
 export const state = () => ({
     mainPosts: [],
     hasMorePost: true,
+    imagePaths: [],
 });
 // 가정한다
 const totalPosts = 51;
@@ -37,15 +38,27 @@ export const mutations = {
         state.mainPosts = state.mainPosts.concat(fakePosts);
         //  length limit 수가 달라져서 false 가된다
         state.hasMorePost = fakePosts.length === limit;
+    },
+    concatImagesPath(state, payLoad){
+        state.imagePaths = state.imagePaths.concat(payLoad);
+    },
+    removeImagePath(state, payLoad){
+        state.imagePaths.splice(payLoad, 1);
     }
 };
 
 // 비동기작업
 export const actions = {
-    add({ commit }, payLoad) {
+    add({ commit,state }, payLoad) {
         // 같은모듈안에서는 posts는 안붙여도된다 다른데 붙일경우 붙여줭한다
         // actions 를 만드는건 서버에 게시물 등록 요청 보낸후 commit 처리
-        commit('addMainPost', payLoad);
+        this.$axios.post('http://localhost:3085/post', {
+           content: payLoad.content, imagePaths: state.imagePaths,
+        }, {withCredentials: true}).then((res)=>{
+           commit('addMainPost', res.data);
+        }).catch((err)=>{
+            console.log(err);
+        });
     },
     remove({ commit }, payLoad) {
         commit('reMainPost', payLoad);
@@ -57,5 +70,17 @@ export const actions = {
         if (state.hasMorePost) {
             commit('loadPosts', payLoad);
         }
-    }
+    },
+    uploadImages({commit}, payLoad){
+        this.$axios.post('http://localhost:3085/post/images',payLoad, {withCredentials: true
+        }).then((res)=> {
+            commit('concatImagesPath', res.data);
+        }).catch((e)=>{
+            alert(e);
+        });
+
+    },
+    removeImagePath({commit}, payLoad){
+        commit('removeImagePath', payLoad);
+    },
 }

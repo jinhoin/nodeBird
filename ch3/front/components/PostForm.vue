@@ -12,7 +12,14 @@
           @input="onChangeTextArea"
         />
         <v-btn type="submit" color="green" absolute right>전송</v-btn>
-        <v-btn>이미지 업로드</v-btn>
+        <input type="file" multiple hidden ref="imageInput" @change="onChangeImages">
+        <v-btn @click="onClickImageUpload" type="button">이미지 업로드</v-btn>
+        <div>
+          <div v-for="(p, i) in imagePaths" :key="p" style="display: flex; flex-direction: column">
+            <img :src="`http://localhost:3085/${p}`" :alt="p" style="width: 200px; height: 200px;">
+            <v-btn type="button" @click="onRemoveImage(i)">삭제</v-btn>
+          </div>
+        </div>
       </v-form>
     </v-container>
   </v-card>
@@ -31,8 +38,12 @@ export default {
   },
   computed: {
     //   mapSate
-    ...mapState("users", ["me"])
+    ...mapState("users", ["me"]),
     //   return this.$store.state.users;
+    imagePaths() {
+      let i = this.$store.state.posts.imagePaths;
+      return i;
+    }
   },
   methods: {
     onChangeTextArea() {
@@ -63,7 +74,21 @@ export default {
             alert(err);
           });
       }
-    }
+    },
+    onClickImageUpload() {
+      this.$refs.imageInput.click();
+    },
+    onChangeImages(e){
+      const imageFormData = new FormData();
+      // 유사배열 방식으로 배열을 array 화 시킨다
+      [].forEach.call(e.target.files, (f) => {
+        imageFormData.append('image', f);
+      });
+      this.$store.dispatch('posts/uploadImages', imageFormData);
+    },
+    onRemoveImage(index){
+      this.$store.dispatch('posts/removeImagePath', index);
+    },
   }
 };
 </script>
